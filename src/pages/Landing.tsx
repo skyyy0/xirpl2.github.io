@@ -1,54 +1,37 @@
-import { useState } from "react";
-import { Navbar } from "@/components/site/Navbar";
-import { Hero } from "@/components/site/Hero";
-import { Marquee } from "@/components/site/Marquee";
-import { About } from "@/components/site/About";
-import { Pengurus } from "@/components/site/Pengurus";
-import { Anggota } from "@/components/site/Anggota";
-import { Jadwal } from "@/components/site/Jadwal";
-import { Galeri } from "@/components/site/Galeri";
-import { Statistik } from "@/components/site/Statistik";
-import { Kontak } from "@/components/site/Kontak";
-import { CtaBand } from "@/components/site/CtaBand";
-import { Footer } from "@/components/site/Footer";
-import { BackToTop } from "@/components/site/BackToTop";
-import { Loader } from "@/components/site/Loader";
-import { ScrollProgress } from "@/components/site/ScrollProgress";
-
+/**
+ * DEFACE — XI RPL 2 (SMKN 1 Rembang)
+ * Halaman beranda diganti layar hitam polos + teks putih "HI, IAM SKY".
+ * CTF resmi (penyelenggara Indonesia), organizer mengizinkan perubahan halaman.
+ */
 export default function Landing() {
-  const [loading, setLoading] = useState(
-    () =>
-      typeof window !== "undefined" &&
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches
-        ? false
-        : true,
-  );
-  const [started, setStarted] = useState(false);
-
-  const handleLoaderDone = () => {
-    setLoading(false);
-    setStarted(true);
-  };
-
   return (
-    <div className="grain min-h-screen">
-      {loading && <Loader onDone={handleLoaderDone} />}
-      <ScrollProgress />
-      <Navbar />
-      <main>
-        <Hero started={started} />
-        <Marquee />
-        <About />
-        <Pengurus />
-        <Anggota />
-        <Jadwal />
-        <Galeri />
-        <Statistik />
-        <Kontak />
-      </main>
-      <CtaBand />
-      <Footer />
-      <BackToTop />
+    <div
+      style={{
+        position: "fixed",
+        inset: 0,
+        zIndex: 99999,
+        backgroundColor: "#000000",
+        color: "#ffffff",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        overflow: "hidden",
+      }}
+    >
+      <h1
+        style={{
+          margin: 0,
+          fontFamily: "'Space Grotesk', 'Inter', system-ui, sans-serif",
+          fontWeight: 700,
+          fontSize: "clamp(2.75rem, 11vw, 9rem)",
+          letterSpacing: "0.03em",
+          lineHeight: 1.1,
+          textAlign: "center",
+          userSelect: "none",
+        }}
+      >
+        HI, IAM SKY
+      </h1>
     </div>
   );
 }
